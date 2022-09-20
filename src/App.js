@@ -1,7 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { makeStyles } from '@mui/styles';
+import { makeStyles, Typography } from '@material-ui/core';
 import { Box, height } from '@mui/system';
-import { Button, TextField } from '@mui/material';
+import { Button } from '@mui/material';
+import { Grid, TextField } from '@material-ui/core';
 import axios from 'axios'
 import fileDownload from 'js-file-download'
 
@@ -56,7 +57,7 @@ export default function App() {
   const executeResumeScroll = () => ResumeRef.current.scrollIntoView()
 
   return (
-    <div className={Styles._mainContainer}>
+    <>
       <div className={Styles._navBarMain}>
         <div className={Styles._navLeft}>
           <h2 className={Styles._nameText}>Your Name</h2>
@@ -178,20 +179,37 @@ export default function App() {
       </div>
 
       <div className={Styles._aboutMain} ref={ContactRef}>
-        <div className={Styles._titleMain}>
-          <p className={Styles._titleText} >Contact Me</p>
-        </div>
-        <div className={Styles._contactContentMain}>
-          <TextField value={Name} onChange={(text) => setName(text.target.value)} style={{ width: "50%", marginBottom: "2%" }} label="Name" variant="outlined" />
-          <TextField value={Email} onChange={(e) => setEmail(e.target.value)} style={{ width: "50%", marginBottom: "2%" }} label="Email" variant="outlined" />
-          <TextField value={Message} onChange={(text) => setMessage(text.target.value)} style={{ width: "50%", marginBottom: "2%" }} label="Message" variant="outlined" />
-          <div onClick={() => _onSubmitClick()} style={{ width: "50%", marginBottom: "4%" }} className={Styles.portfolioBtn}>
-            <h3 className={Styles._btnTextColor}>Submit</h3>
+        {/* <div className={Styles._titleMain}>
+            <p className={Styles._titleText} >Contact Me</p>
           </div>
-        </div>
-        <div className={Styles._break}></div>
-      </div>
+          <div className={Styles._contactContentMain}>
+            <TextField value={Name} onChange={(text) => setName(text.target.value)} style={{ width: "50%", marginBottom: "2%" }} label="Name" variant="outlined" />
+            <TextField value={Email} onChange={(e) => setEmail(e.target.value)} style={{ width: "50%", marginBottom: "2%" }} label="Email" variant="outlined" />
+            <TextField value={Message} onChange={(text) => setMessage(text.target.value)} style={{ width: "50%", marginBottom: "2%" }} label="Message" variant="outlined" />
+            <div onClick={() => _onSubmitClick()} style={{ width: "50%", marginBottom: "4%" }} className={Styles.portfolioBtn}>
+              <h3 className={Styles._btnTextColor}>Submit</h3>
+            </div>
 
+          </div> */}
+      </div>
+      <Typography className={Styles._titleText} align="center">Contact Me</Typography>
+      <Grid container spacing={2} style={{ padding: "20px" }} justifyContent="center">
+        <Grid item xs={12} sm={12} md={12} lg={7}>
+          <TextField value={Name} onChange={(text) => setName(text.target.value)} label="Name" variant="outlined" fullWidth={true} />
+
+        </Grid>
+        <Grid item xs={12} sm={12} md={12} lg={7}>
+          <TextField value={Email} onChange={(e) => setEmail(e.target.value)} label="Email" variant="outlined" fullWidth={true} />
+
+        </Grid>
+        <Grid item xs={12} sm={12} md={12} lg={7}>
+          <TextField value={Message} onChange={(text) => setMessage(text.target.value)} label="Message" variant="outlined" fullWidth={true} />
+
+        </Grid>
+        <Grid item xs={12} sm={12} md={12} lg={7} style={{ display: "flex", justifyContent: "center", }}>
+          <Button onClick={() => _onSubmitClick()} variant='contained' style={{ backgroundColor: "black", borderRadius: "10px" }}>Submit</Button>
+        </Grid>
+      </Grid>
       <div className={Styles._resumeMain} ref={ResumeRef}>
         <div className={Styles._titleMain}>
           <p className={Styles._titleText} >Resume</p>
@@ -204,17 +222,17 @@ export default function App() {
         <div className={Styles._break}></div>
       </div>
 
-    </div>
+    </>
   )
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   _mainContainer: {
     // display: "flex",
     // flex: 1,
     width: "100%",
     // height: 1500,
-    backgroundColor: "red",
+    backgroundColor: "white",
   },
   _navBarMain: {
     // width: "100%",
@@ -246,6 +264,9 @@ const useStyles = makeStyles({
   _nameText: {
     fontFamily: "monospace",
     color: PRIMARY_COLOR2,
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "75%"
+    }
   },
   _navBtn: {
     width: "23%",
@@ -263,7 +284,10 @@ const useStyles = makeStyles({
   _btnText: {
     fontFamily: "monospace",
     color: PRIMARY_COLOR2,
-    fontSize: "140%"
+    fontSize: "140%",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "70%"
+    }
   },
   _aboutMain: {
     width: "100%",
@@ -290,6 +314,9 @@ const useStyles = makeStyles({
     fontSize: "200%",
     fontWeight: "bold",
     textDecorationLine: 'underline',
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "85%"
+    }
   },
   _contentMain: {
     width: "80%",
@@ -304,6 +331,9 @@ const useStyles = makeStyles({
     fontSize: "150%",
     color: PRIMARY_COLOR,
     fontFamily: "monospace",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "80%"
+    }
   },
   _break: {
     width: "80%",
@@ -331,6 +361,13 @@ const useStyles = makeStyles({
     flexDirection: "row",
     marginBottom: "3%"
   },
+  _textFiedls: {
+    [theme.breakpoints.down("xs")]: {
+      // backgroundColor:"green",
+      height: 20,
+
+    }
+  },
   _portfolioCardMAin: {
     width: "15%",
     height: 270,
@@ -346,7 +383,10 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
+    [theme.breakpoints.down("xs")]: {
+      height: 90,
+    }
   },
   _portfolioBtnsMAin: {
     width: "100%",
@@ -371,6 +411,10 @@ const useStyles = makeStyles({
   _btnTextColor: {
     color: PRIMARY_COLOR2,
     fontFamily: "monospace",
+    textAlign: "center",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "38%",
+    }
   },
   _contactContentMain: {
     width: "80%",
@@ -394,5 +438,5 @@ const useStyles = makeStyles({
     flexDirection: "column"
   },
 
-})
+}))
 
