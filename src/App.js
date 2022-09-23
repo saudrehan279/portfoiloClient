@@ -214,10 +214,24 @@ export default function App() {
         <div className={Styles._titleMain}>
           <p className={Styles._titleText} >Resume</p>
         </div>
-        <div style={{ paddingBottom: "5%" }} className={Styles._contentMain}>
+        <div style={{ paddingBottom: "1%" }} className={Styles._contentMain}>
           <div onClick={() => _handleDownload(require("./MyResume.pdf"), "MyResume.pdf")} style={{ width: "20%" }} className={Styles.portfolioBtn}>
             <h3 className={Styles._btnTextColor}>Download My Resume</h3>
           </div>
+        </div>
+        <div className={Styles._linksMian}>
+          <a href='https://github.com/'>
+            <img className={Styles._logoImage} src={require("./github-sign.png")} />
+          </a>
+          <a href='https://www.linkedin.com/'>
+            <img className={Styles._logoImage} src={require("./linkedin.png")} />
+          </a>
+          <a href='https://stackoverflow.com/'>
+            <img className={Styles._logoImage} src={require("./stack-overflow.png")} />
+          </a>
+          <a href='https://twitter.com/'>
+            <img className={Styles._logoImage} src={require("./twitter.png")} />
+          </a>
         </div>
         <div className={Styles._break}></div>
       </div>
@@ -436,6 +450,21 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "2%",
     marginBottom: "10%",
     flexDirection: "column"
+  },
+  _linksMian: {
+    width: "80%",
+    height: "70px",
+    backgroundColor: "white",
+    display: "flex",
+    flexDirection: "row",
+    // justifyContent: "center",
+    alignItems: "center"
+  },
+  _logoImage: {
+    width: 25,
+    height: 25,
+    "cursor": 'pointer',
+    margin: 7
   },
 
 }))
